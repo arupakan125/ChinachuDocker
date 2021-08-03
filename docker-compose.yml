@@ -1,0 +1,20 @@
+version: "3.7"
+services:
+  chinachu:
+    image: arupakan125/chinachu:latest
+    container_name: chinachu
+    environment:
+      TZ: Asia/Tokyo
+    ports:
+      - 20772:20772
+    volumes:
+      - "./config.json:/Chinachu-gamma/config.json"
+      - "./rules.json:/Chinachu-gamma/rules.json"
+      - "./data:/Chinachu-gamma/data"
+      - "./recorded:/Chinachu-gamma/recorded"
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-file: "1"
+        max-size: 10m
