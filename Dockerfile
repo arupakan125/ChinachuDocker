@@ -7,7 +7,9 @@ RUN unzip gamma.zip
 WORKDIR /Chinachu-gamma
 RUN echo 1 | ./chinachu installer
 
-COPY /entrypoint.sh ./
-RUN chmod +x ./entrypoint.sh
+RUN npm install pm2 -g
+RUN mkdir log
 
-ENTRYPOINT ["/Chinachu-gamma/entrypoint.sh"]
+RUN chown node:node -R .
+
+CMD ["pm2-runtime", "processes.json"]
